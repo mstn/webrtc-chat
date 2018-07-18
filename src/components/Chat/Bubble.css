@@ -1,0 +1,87 @@
+/**
+*  adapted from https://codepen.io/Founts/pen/gmhcl
+*/
+
+/* CSS talk bubble */
+.talk-bubble {
+	margin: 10px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+  height: auto;
+  border: 8px solid #666;
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+}
+
+.left-top {
+  background-color: lightgreen;
+}
+.right-top {
+	background-color: lightgray;
+}
+
+/* Right triangle placed top left flush. */
+.left-top:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -40px;
+	right: auto;
+  top: -8px;
+	bottom: auto;
+	border: 32px solid;
+  border-color: #666 transparent transparent transparent;
+}
+.left-top:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -20px;
+	right: auto;
+  top: 0px;
+	bottom: auto;
+	border: 22px solid;
+	border-color: lightgreen transparent transparent transparent;
+}
+
+/* Right triangle placed top right flush. */
+.right-top:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -40px;
+  top: -8px;
+	bottom: auto;
+	border: 32px solid;
+	border-color: #666 transparent transparent transparent;
+}
+.right-top:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -20px;
+  top: 0px;
+	bottom: auto;
+	border: 20px solid;
+	border-color: lightgray transparent transparent transparent;
+}
+
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+	text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}

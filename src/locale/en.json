@@ -3,6 +3,7 @@
   "app.pages.joinChat.title": "Join chat",
   "app.layout.connecting": "Connecting to server",
   "app.pages.chat.title": "Chat",
+  "app.pages.chat.chatDoesNotExist": "Chat does not exist",
   "app.peerList.loadingPeers": "Loading peers",
   "app.peerList.refresh": "Refresh",
   "app.peerList.availablePeers": "Available peers",
@@ -11,5 +12,6 @@
   "app.chatRequests.loadingRequests": "Loading requests",
   "app.chatRequests.noRequests": "No requests",
   "app.chatRequests.join": "Join",
-  "app.header.welcomeMessage": "You are connected as {displayName}"
+  "app.header.welcomeMessage": "You are connected as {displayName}",
+  "app.chat.send": "Send"
 }
