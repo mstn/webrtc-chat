@@ -45,6 +45,7 @@ class Chat extends React.Component {
     this.props.addOnCloseListener(this.onClose);
     if (this.timeoutHandle) clearTimeout(this.timeoutHandle);
     this.scrollToBottom();
+    this.input.focus();
   }
 
   componentWillUnmount() {
@@ -88,6 +89,7 @@ class Chat extends React.Component {
             type="text"
             onChange={event => this.onTyping(event.target.value)}
             value={this.state.message}
+            ref={el => { this.input = el; }}
           />
           <button onClick={this.onSubmit} disabled={!canSubmit}>
             <FormattedMessage id="app.chat.send" />
