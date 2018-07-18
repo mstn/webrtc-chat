@@ -22,6 +22,11 @@ import remoteResolvers from './resolvers/remote';
 const exec = buildExecutor(localResolvers);
 const execRemote = buildExecutor(remoteResolvers);
 
+/**
+ * Scroll to bottom based on this answer     
+ * https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
+ */
+
 class Chat extends React.Component {
 
   state = {
@@ -39,6 +44,7 @@ class Chat extends React.Component {
     this.props.addOnDataListener(this.onMessage);
     this.props.addOnCloseListener(this.onClose);
     if (this.timeoutHandle) clearTimeout(this.timeoutHandle);
+    this.scrollToBottom();
   }
 
   componentWillUnmount() {
@@ -49,6 +55,7 @@ class Chat extends React.Component {
     if (this.state.peerIsTyping) {
       this.timeoutHandle = setTimeout(this.unsetPeerIsTyping, 1000);
     }
+    this.scrollToBottom();
   }
 
   render() {
@@ -74,49 +81,52 @@ class Chat extends React.Component {
         )}
         <div className="chat-container">
           {messages.map((message, index) => <Bubble key={index} {...message} />)}
+          <div ref={el => { this.bottom = el; }} />
         </div>
-        <input
-          type="text"
-          onChange={event => this.onTyping(event.target.value)}
-          value={this.state.message}
-        />
-        <button onClick={this.onSubmit} disabled={!canSubmit}>
-          <FormattedMessage id="app.chat.send" />
-        </button>
-        {peerIsTyping && (
-          <p>
-            <FormattedMessage id="app.chat.peerIsTyping" />
-          </p>
-        )}
-        {isTerminated && (
-          <p>
-            <FormattedMessage id="app.chat.chatTerminatedByPeer" />
-          </p>
-        )}
-        {error && (
-          <p>
-            <FormattedMessage id="app.chat.unknownCommand" />
-          </p>
-        )}
-        {remoteError && (
-          <p>
-            <FormattedMessage id="app.chat.remoteCommandError" />
-            <br />
-            <span>
-              {JSON.stringify(remoteError.action)}
-            </span>
-            <button onClick={this.onCloseErrorMessage}>
-              <FormattedMessage id="app.chat.close" />
-            </button>
-          </p>
-        )}
-        {countdown && countdown > 0 && (
-          <Countdown
-            countdown={this.state.countdown}
-            link={this.state.countdownUrl}
-            onDone={this.handleCountdownDone}
+        <div className="chat-control">
+          <input
+            type="text"
+            onChange={event => this.onTyping(event.target.value)}
+            value={this.state.message}
           />
-        )}
+          <button onClick={this.onSubmit} disabled={!canSubmit}>
+            <FormattedMessage id="app.chat.send" />
+          </button>
+          {peerIsTyping && (
+            <p>
+              <FormattedMessage id="app.chat.peerIsTyping" />
+            </p>
+          )}
+          {isTerminated && (
+            <p>
+              <FormattedMessage id="app.chat.chatTerminatedByPeer" />
+            </p>
+          )}
+          {error && (
+            <p>
+              <FormattedMessage id="app.chat.unknownCommand" />
+            </p>
+          )}
+          {remoteError && (
+            <p>
+              <FormattedMessage id="app.chat.remoteCommandError" />
+              <br />
+              <span>
+                {JSON.stringify(remoteError.action)}
+              </span>
+              <button onClick={this.onCloseErrorMessage}>
+                <FormattedMessage id="app.chat.close" />
+              </button>
+            </p>
+          )}
+          {countdown && countdown > 0 && (
+            <Countdown
+              countdown={this.state.countdown}
+              link={this.state.countdownUrl}
+              onDone={this.handleCountdownDone}
+            />
+          )}
+        </div>
       </React.Fragment>
     );
   }
@@ -190,6 +200,10 @@ class Chat extends React.Component {
     this.setState({
       peerIsTyping: false
     });
+  }
+
+  scrollToBottom = () => {
+    this.bottom.scrollIntoView({ behavior: "smooth" });
   }
 
 }
