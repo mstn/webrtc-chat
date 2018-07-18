@@ -1,6 +1,10 @@
 import React from 'react';
 
+import T from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
+
+import { withProps } from 'recompose';
 
 import './Chat.css';
 
@@ -12,20 +16,35 @@ import {
 } from './utils';
 
 import localResolvers from './resolvers/local';
+import remoteResolvers from './resolvers/remote';
 
 const exec = buildExecutor(localResolvers);
+const execRemote = buildExecutor(remoteResolvers);
 
 class Chat extends React.Component {
 
   state = {
     message: '',
     messages: [],
+    peerIsTyping: false,
   };
+
+  componentDidMount() {
+    this.props.addOnDataListener(this.onMessage);
+    if (this.timeoutHandle) clearTimeout(this.timeoutHandle);
+  }
+
+  componentDidUpdate() {
+    if (this.state.peerIsTyping) {
+      this.timeoutHandle = setTimeout(this.unsetPeerIsTyping, 1000);
+    }
+  }
 
   render() {
     const {
       messages,
       message,
+      peerIsTyping
     } = this.state;
 
     const canSubmit = message !== undefined
@@ -43,6 +62,9 @@ class Chat extends React.Component {
         <button onClick={this.onSubmit} disabled={!canSubmit}>
           <FormattedMessage id="app.chat.send" />
         </button>
+        {peerIsTyping && (
+          <p>Peer is typing</p>
+        )}
       </React.Fragment>
     );
   }
@@ -60,12 +82,44 @@ class Chat extends React.Component {
     this.dispatch(command);
   }
 
+  onMessage = command => {
+    this.dispatchRemote(command);
+  }
+
+  dispatchRemote(action) {
+    this.setState(prevState => execRemote(prevState, action));
+  }
+
   dispatch(action) {
     this.setState(prevState => exec(prevState, action));
-    // TODO every local actions should be send over to other peer
-    // this.props.send(action);
+    // every local actions should be send over to other peer
+    this.props.send(action);
+  }
+
+  unsetPeerIsTyping = () => {
+    this.setState({
+      peerIsTyping: false
+    });
   }
 
 }
 
-export default Chat;
+Chat.propTypes = {
+  send: T.func.isRequired,
+  addOnDataListener: T.func.isRequired,
+  addOnCloseListener: T.func.isRequired,
+  close: T.func.isRequired,
+};
+
+// inject into the class some utility methods to interact with connection object
+const withSendAndReceive = withProps(props => ({
+  send: (message) => props.connection.send(JSON.stringify(message)),
+  addOnDataListener: (listener) => props.connection.on('data', (data) => {
+    listener(JSON.parse(data));
+  }),
+  addOnCloseListener: (listener) => props.connection.on('close', () => {
+    listener();
+  })
+}))
+
+export default withSendAndReceive(Chat);
