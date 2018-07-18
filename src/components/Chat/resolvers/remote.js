@@ -14,7 +14,12 @@ const commands = {
     return {
       peerIsTyping: true
     };
-  }
+  },
+  NICK(state, action) {
+    return {
+      peerNickname: action.payload
+    };
+  },
 }
 
 export default commands;

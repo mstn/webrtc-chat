@@ -15,5 +15,6 @@
   "app.header.welcomeMessage": "You are connected as {displayName}",
   "app.chat.send": "Send",
   "app.chat.peerIsTyping": "Peer is typing",
-  "app.chat.chatTerminatedByPeer": "Chat terminated by peer"
+  "app.chat.chatTerminatedByPeer": "Chat terminated by peer",
+  "app.chat.youAreChattingWith": "You are chatting with {peerNickname}"
 }

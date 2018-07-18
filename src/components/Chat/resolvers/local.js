@@ -14,7 +14,12 @@ const commands = {
     return {
       message: action.payload
     };
-  }
+  },
+  NICK(state, action) {
+    return {
+      message: ''
+    }; // do nothing
+  },
 }
 
 export default commands;

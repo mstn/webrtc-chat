@@ -28,6 +28,7 @@ class Chat extends React.Component {
     messages: [],
     peerIsTyping: false,
     isTerminated: false,
+    peerNickname: undefined,
   };
 
   componentDidMount() {
@@ -52,12 +53,18 @@ class Chat extends React.Component {
       message,
       peerIsTyping,
       isTerminated,
+      peerNickname
     } = this.state;
 
     const canSubmit = message !== undefined
 
     return (
       <React.Fragment>
+        {peerNickname && (
+          <h3>
+            <FormattedMessage id="app.chat.youAreChattingWith" values={{ peerNickname }} />
+          </h3>
+        )}
         <div className="chat-container">
           {messages.map((message, index) => <Bubble key={index} {...message} />)}
         </div>
