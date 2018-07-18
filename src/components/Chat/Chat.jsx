@@ -6,6 +6,15 @@ import './Chat.css';
 
 import Bubble from './Bubble';
 
+import {
+  parse,
+  buildExecutor,
+} from './utils';
+
+import localResolvers from './resolvers/local';
+
+const exec = buildExecutor(localResolvers);
+
 class Chat extends React.Component {
 
   state = {
@@ -14,7 +23,6 @@ class Chat extends React.Component {
   };
 
   render() {
-
     const {
       messages,
       message,
@@ -40,10 +48,22 @@ class Chat extends React.Component {
   }
 
   onTyping = (message) => {
-
+    this.dispatch({
+      type: 'TYPING',
+      payload: message,
+      time: Date.now()
+    });
   }
-  onSubmit = () => {
 
+  onSubmit = () => {
+    const command = parse(this.state.message);
+    this.dispatch(command);
+  }
+
+  dispatch(action) {
+    this.setState(prevState => exec(prevState, action));
+    // TODO every local actions should be send over to other peer
+    // this.props.send(action);
   }
 
 }
