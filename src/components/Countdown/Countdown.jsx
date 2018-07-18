@@ -2,8 +2,6 @@ import React from 'react';
 
 import T from 'prop-types';
 
-import { Redirect } from 'react-router-dom';
-
 class Countdown extends React.Component {
   state = {
     countdown: this.props.countdown
