@@ -56,7 +56,7 @@ class Chat extends React.Component {
       peerNickname
     } = this.state;
 
-    const canSubmit = message !== undefined
+    const canSubmit = message !== undefined && !isTerminated;
 
     return (
       <React.Fragment>
