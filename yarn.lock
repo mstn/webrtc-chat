@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/webrtc@0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@types/webrtc/-/webrtc-0.0.21.tgz#bc3cfb7e22add284761e5d63efad664b0eba8b86"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -1743,6 +1747,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+create-react-context@^0.1.5:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.1.6.tgz#0f425931d907741127acc6e31acb4f9015dd9fdc"
+
 cross-spawn@5.1.0, cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -2508,6 +2516,10 @@ event-stream@~3.3.0:
     split "0.3"
     stream-combiner "~0.0.4"
     through "~2.3.1"
+
+eventemitter3@^0.1.5:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-0.1.6.tgz#8c7ac44b87baab55cd50c828dc38778eac052ea5"
 
 eventemitter3@^3.0.0:
   version "3.1.0"
@@ -4063,6 +4075,10 @@ js-base64@^2.1.9:
   version "2.4.8"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.8.tgz#57a9b130888f956834aa40c5b165ba59c758f033"
 
+js-binarypack@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/js-binarypack/-/js-binarypack-0.0.9.tgz#454243d3de212961cc1514a2f119dec2faf64035"
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -5170,6 +5186,15 @@ peer@^0.2.8:
     optimist "~0.6.1"
     ws "~0.4.25"
 
+peerjs@^0.3.16:
+  version "0.3.16"
+  resolved "https://registry.yarnpkg.com/peerjs/-/peerjs-0.3.16.tgz#d6ece15f2f4c923a7ad34dd935ec75cb81990a56"
+  dependencies:
+    "@types/webrtc" "0.0.21"
+    eventemitter3 "^0.1.5"
+    js-binarypack "0.0.9"
+    reliable "git+https://github.com/michelle/reliable.git"
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -5561,7 +5586,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -5998,6 +6023,12 @@ regjsparser@^0.1.4:
 relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
+
+"reliable@git+https://github.com/michelle/reliable.git":
+  version "0.1.0"
+  resolved "git+https://github.com/michelle/reliable.git#f09ba29d57a05beaa07990171f3fe7b746587aaa"
+  dependencies:
+    js-binarypack "0.0.9"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
@@ -6970,6 +7001,12 @@ unset-value@^1.0.0:
   dependencies:
     has-value "^0.3.1"
     isobject "^3.0.0"
+
+unstated@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/unstated/-/unstated-2.1.1.tgz#36b124dfb2e7a12d39d0bb9c46dfb6e51276e3a2"
+  dependencies:
+    create-react-context "^0.1.5"
 
 unzip-response@^2.0.1:
   version "2.0.1"
