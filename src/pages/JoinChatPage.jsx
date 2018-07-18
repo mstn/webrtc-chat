@@ -26,10 +26,6 @@ class JoinChatPage extends React.Component {
 
     const { connection } = this.props;
 
-    if (connection.state.connecting) {
-      return <b><FormattedMessage id="app.pages.joinChat.connecting" /></b>;
-    }
-
     if (this.state.goTo) {
       return <Redirect to={this.state.goTo} />
     }

@@ -11,6 +11,8 @@ import ChatPage from './pages/ChatPage';
 import NotFoundPage from './pages/NotFoundPage';
 import JoinChatPage from './pages/JoinChatPage';
 
+import Layout from './layouts/Layout';
+
 const en = require('./locale/en.json');
 const messages = { en };
 
@@ -25,8 +27,8 @@ class App extends Component {
         <Provider>
           <Router history={history}>
             <Switch>
-              <Route path={'/join'} component={JoinChatPage} />
-              <Route path={'/chat/:chatId'} component={ChatPage} />
+              <Route path={'/join'} component={Layout(JoinChatPage)} />
+              <Route path={'/chat/:chatId'} component={Layout(ChatPage)} />
               <Redirect exact={true} from="/" to="/join" />
               <Route component={NotFoundPage} />
             </Switch>

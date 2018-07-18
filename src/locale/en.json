@@ -1,7 +1,7 @@
 {
   "app.pages.notFound.title": "Page not found",
   "app.pages.joinChat.title": "Join chat",
-  "app.pages.joinChat.connecting": "Connecting to server",
+  "app.layout.connecting": "Connecting to server",
   "app.pages.chat.title": "Chat",
   "app.peerList.loadingPeers": "Loading peers",
   "app.peerList.refresh": "Refresh",
@@ -10,5 +10,6 @@
   "app.chatRequests.title": "Chat requests",
   "app.chatRequests.loadingRequests": "Loading requests",
   "app.chatRequests.noRequests": "No requests",
-  "app.chatRequests.join": "Join"
+  "app.chatRequests.join": "Join",
+  "app.header.welcomeMessage": "You are connected as {displayName}"
 }
