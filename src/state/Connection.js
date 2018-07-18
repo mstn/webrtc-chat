@@ -48,11 +48,13 @@ class ConnectionContainer extends Container {
 
     // the client receive a new connection request from a peer
     this.peer.on('connection', connection => {
-      this.setState({
-        connections: {
-          ...this.state.connections,
-          [connection.id]: connection
-        },
+      connection.on('open', () => {
+        this.setState({
+          connections: {
+            ...this.state.connections,
+            [connection.id]: connection
+          },
+        });
       });
     });
   }
