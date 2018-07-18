@@ -78,9 +78,9 @@ class Chat extends React.Component {
     return (
       <React.Fragment>
         {peerNickname && (
-          <h3>
+          <p>
             <FormattedMessage id="app.chat.youAreChattingWith" values={{ peerNickname }} />
-          </h3>
+          </p>
         )}
         <div className="chat-container">
           {messages.map((message, index) => <Bubble key={index} {...message} />)}
