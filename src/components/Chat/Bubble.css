@@ -89,3 +89,7 @@
 .isThinking {
   color: darkgray;
 }
+
+.highlight {
+  font-size: 110%;
+}

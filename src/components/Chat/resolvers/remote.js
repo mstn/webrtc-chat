@@ -57,6 +57,15 @@ const commands = {
       countdownUrl,
     };
   },
+  HIGHLIGHT(state, action) {
+    return {
+      messages: state.messages.concat({
+        text: action.payload,
+        highlight: true,
+        remote: true,
+      })
+    };
+  },
 }
 
 export default commands;

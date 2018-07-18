@@ -51,6 +51,15 @@ const commands = {
       message: ''
     }; // do nothing
   },
+  HIGHLIGHT(state, action) {
+    return {
+      messages: state.messages.concat({
+        text: action.payload,
+        highlight: true
+      }),
+      message: ''
+    };
+  },
 }
 
 export default commands;
