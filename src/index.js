@@ -1,8 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import bootstrap from './bootstrap';
+
+// register some global variables
+const version = 'webrtc_chat_version';
+global[version] = process.env.REACT_APP_VERSION;
+
+const root = document.getElementById('root');
+
+bootstrap().then((initialState) => {
+  ReactDOM.render(<App initialState={initialState} />, root);
+});

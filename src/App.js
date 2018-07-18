@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { IntlProvider } from 'react-intl';
+
+import { Route, Router, Switch } from 'react-router-dom';
+
+import NotFoundPage from './pages/NotFoundPage';
+
+const en = require('./locale/en.json');
+const messages = { en };
 
 class App extends Component {
   render() {
+    const {
+      locale,
+      history,
+    } = this.props.initialState;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <Router history={history}>
+          <Switch>
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Router>
+      </IntlProvider>
     );
   }
 }
