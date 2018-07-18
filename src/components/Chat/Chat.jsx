@@ -84,6 +84,11 @@ class Chat extends React.Component {
         )}
         <div className="chat-container">
           {messages.map((message, index) => <Bubble key={index} {...message} />)}
+          {peerIsTyping && (
+            <p>
+              <FormattedMessage id="app.chat.peerIsTyping" />
+            </p>
+          )}
           <div ref={el => { this.bottom = el; }} />
         </div>
         <div className="chat-control">
@@ -97,11 +102,6 @@ class Chat extends React.Component {
           <button onClick={this.onSubmit} disabled={!canSubmit}>
             <FormattedMessage id="app.chat.send" />
           </button>
-          {peerIsTyping && (
-            <p>
-              <FormattedMessage id="app.chat.peerIsTyping" />
-            </p>
-          )}
           {isTerminated && (
             <p>
               <FormattedMessage id="app.chat.chatTerminatedByPeer" />
