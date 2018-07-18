@@ -1,3 +1,5 @@
 {
-  "app.pages.notFound.title": "Page not found"
+  "app.pages.notFound.title": "Page not found",
+  "app.pages.joinChat.title": "Join chat",
+  "app.pages.chat.title": "Chat"
 }
