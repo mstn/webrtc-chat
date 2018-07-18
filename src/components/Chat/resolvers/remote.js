@@ -51,7 +51,7 @@ const commands = {
     if (args.length !== 2) {
       throw new Error('Malformed command');
     }
-    const countdown = parseInt(args[0]);
+    const countdown = parseInt(args[0], 10);
     // TODO verify is string is url
     const countdownUrl = args[1];
     return {
