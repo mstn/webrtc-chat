@@ -27,11 +27,17 @@ class Chat extends React.Component {
     message: '',
     messages: [],
     peerIsTyping: false,
+    isTerminated: false,
   };
 
   componentDidMount() {
     this.props.addOnDataListener(this.onMessage);
+    this.props.addOnCloseListener(this.onClose);
     if (this.timeoutHandle) clearTimeout(this.timeoutHandle);
+  }
+
+  componentWillUnmount() {
+    this.props.close();
   }
 
   componentDidUpdate() {
@@ -44,7 +50,8 @@ class Chat extends React.Component {
     const {
       messages,
       message,
-      peerIsTyping
+      peerIsTyping,
+      isTerminated,
     } = this.state;
 
     const canSubmit = message !== undefined
@@ -65,6 +72,9 @@ class Chat extends React.Component {
         {peerIsTyping && (
           <p>Peer is typing</p>
         )}
+        {isTerminated && (
+          <p>Chat terminated by your peer</p>
+        )}
       </React.Fragment>
     );
   }
@@ -84,6 +94,12 @@ class Chat extends React.Component {
 
   onMessage = command => {
     this.dispatchRemote(command);
+  }
+
+  onClose = () => {
+    this.setState({
+      isTerminated: true
+    });
   }
 
   dispatchRemote(action) {
@@ -119,7 +135,8 @@ const withSendAndReceive = withProps(props => ({
   }),
   addOnCloseListener: (listener) => props.connection.on('close', () => {
     listener();
-  })
+  }),
+  close: () => props.connection.close()
 }))
 
 export default withSendAndReceive(Chat);
