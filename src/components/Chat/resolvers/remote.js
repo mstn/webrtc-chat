@@ -20,6 +20,15 @@ const commands = {
       peerNickname: action.payload
     };
   },
+  THINK(state, action) {
+    return {
+      messages: state.messages.concat({
+        text: action.payload,
+        think: true,
+        remote: true,
+      })
+    };
+  },
 }
 
 export default commands;

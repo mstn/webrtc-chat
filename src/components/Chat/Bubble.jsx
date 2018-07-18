@@ -8,7 +8,7 @@ const Bubble = (props) => {
   return (
     <div className={classnames(['talk-bubble', 'tri-right', props.remote ? 'right-top' : 'left-top'])}>
       <div className="talktext">
-        <p>{props.text}</p>
+        <p className={props.think ? 'isThinking' : ''}>{props.text}</p>
       </div>
     </div>
   );

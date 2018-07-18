@@ -20,6 +20,15 @@ const commands = {
       message: ''
     }; // do nothing
   },
+  THINK(state, action) {
+    return {
+      messages: state.messages.concat({
+        text: action.payload,
+        think: true
+      }),
+      message: ''
+    };
+  },
 }
 
 export default commands;
