@@ -88,6 +88,7 @@ class Chat extends React.Component {
           <input
             type="text"
             onChange={event => this.onTyping(event.target.value)}
+            onKeyPress={this.handleKeyPress}
             value={this.state.message}
             ref={el => { this.input = el; }}
           />
@@ -160,6 +161,12 @@ class Chat extends React.Component {
     this.setState({
       remoteError: undefined
     });
+  }
+
+  handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      this.onSubmit();
+    }
   }
 
   handleCountdownDone = () => {
