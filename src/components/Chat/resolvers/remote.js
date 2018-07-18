@@ -48,7 +48,7 @@ const commands = {
   },
   COUNTDOWN(state, action) {
     const args = action.payload.split(' ');
-    if (args.lenght !== 2) {
+    if (args.length !== 2) {
       throw new Error('Malformed command');
     }
     const countdown = parseInt(args[0]);
