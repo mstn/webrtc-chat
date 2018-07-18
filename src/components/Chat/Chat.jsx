@@ -45,13 +45,13 @@ class Chat extends React.Component {
   componentDidMount() {
     this.props.addOnDataListener(this.onMessage);
     this.props.addOnCloseListener(this.onClose);
-    if (this.timeoutHandle) clearTimeout(this.timeoutHandle);
     this.scrollToBottom();
     this.input.focus();
   }
 
   componentWillUnmount() {
     this.props.close();
+    if (this.timeoutHandle) clearTimeout(this.timeoutHandle);
   }
 
   componentDidUpdate() {
