@@ -20,6 +20,7 @@
 }
 .right-top {
   background-color: lightgreen;
+  align-self: center;
 }
 
 /* Right triangle placed top left flush. */
