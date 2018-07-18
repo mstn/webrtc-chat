@@ -1,3 +1,5 @@
+import findLastIndex from 'lodash/fp/findLastIndex';
+
 /**
  * describe how a REMOTE command changes the local state
  */
@@ -28,6 +30,19 @@ const commands = {
         remote: true,
       })
     };
+  },
+  OOPS(state, action) {
+    const index = findLastIndex(message => {
+      return !!message.remote
+    }, state.messages);
+    if (index > -1) {
+      const messages = [...state.messages];
+      messages.splice(index, 1);
+      return {
+        messages,
+      }
+    }
+    return {};
   },
 }
 
