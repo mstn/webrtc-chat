@@ -44,6 +44,19 @@ const commands = {
     }
     return {};
   },
+  COUNTDOWN(state, action) {
+    const args = action.payload.split(' ');
+    if (args.lenght !== 2) {
+      throw new Error('Malformed command');
+    }
+    const countdown = parseInt(args[0]);
+    // TODO verify is string is url
+    const countdownUrl = args[1];
+    return {
+      countdown,
+      countdownUrl,
+    };
+  },
 }
 
 export default commands;

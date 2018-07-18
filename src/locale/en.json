@@ -17,5 +17,7 @@
   "app.chat.peerIsTyping": "Peer is typing",
   "app.chat.chatTerminatedByPeer": "Chat terminated by peer",
   "app.chat.youAreChattingWith": "You are chatting with {peerNickname}",
-  "app.chat.unknownCommand": "Unknown command"
+  "app.chat.unknownCommand": "Unknown command",
+  "app.chat.remoteCommandError": "Error when executing remote command",
+  "app.chat.close": "Close"
 }

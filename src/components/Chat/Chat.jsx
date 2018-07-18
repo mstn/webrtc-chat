@@ -9,6 +9,7 @@ import { withProps } from 'recompose';
 import './Chat.css';
 
 import Bubble from './Bubble';
+import Countdown from '../Countdown/Countdown';
 
 import {
   parse,
@@ -30,6 +31,8 @@ class Chat extends React.Component {
     isTerminated: false,
     peerNickname: undefined,
     error: undefined,
+    countdown: undefined,
+    countdownUrl: undefined
   };
 
   componentDidMount() {
@@ -56,6 +59,8 @@ class Chat extends React.Component {
       isTerminated,
       peerNickname,
       error,
+      countdown,
+      remoteError,
     } = this.state;
 
     const canSubmit = message !== undefined && !isTerminated;
@@ -93,6 +98,25 @@ class Chat extends React.Component {
             <FormattedMessage id="app.chat.unknownCommand" />
           </p>
         )}
+        {remoteError && (
+          <p>
+            <FormattedMessage id="app.chat.remoteCommandError" />
+            <br />
+            <span>
+              {JSON.stringify(remoteError.action)}
+            </span>
+            <button onClick={this.onCloseErrorMessage}>
+              <FormattedMessage id="app.chat.close" />
+            </button>
+          </p>
+        )}
+        {countdown && countdown > 0 && (
+          <Countdown
+            countdown={this.state.countdown}
+            link={this.state.countdownUrl}
+            onDone={this.handleCountdownDone}
+          />
+        )}
       </React.Fragment>
     );
   }
@@ -120,13 +144,32 @@ class Chat extends React.Component {
     });
   }
 
+  onCloseErrorMessage = () => {
+    this.setState({
+      remoteError: undefined
+    });
+  }
+
+  handleCountdownDone = () => {
+    this.setState({
+      countdown: undefined,
+      countdownUrl: undefined,
+    });
+  }
+
   dispatchRemote(action) {
     try {
       const updateState = execRemote(this.state, action);
       this.setState(updateState);
     } catch (error) {
-      // it should not happen, just print error for debugging
+      // TODO we can do better, just print the error for now
       console.error(error);
+      this.setState({
+        remoteError: {
+          error,
+          action,
+        }
+      });
     }
   }
 

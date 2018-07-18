@@ -46,6 +46,11 @@ const commands = {
     }
     return { message: '' };
   },
+  COUNTDOWN(state, action) {
+    return {
+      message: ''
+    }; // do nothing
+  },
 }
 
 export default commands;
