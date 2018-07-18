@@ -14,7 +14,8 @@ const commands = {
   },
   TYPING(state, action) {
     return {
-      message: action.payload
+      message: action.payload,
+      error: undefined, // cancel error on typing
     };
   },
   NICK(state, action) {

@@ -29,6 +29,7 @@ class Chat extends React.Component {
     peerIsTyping: false,
     isTerminated: false,
     peerNickname: undefined,
+    error: undefined,
   };
 
   componentDidMount() {
@@ -53,7 +54,8 @@ class Chat extends React.Component {
       message,
       peerIsTyping,
       isTerminated,
-      peerNickname
+      peerNickname,
+      error,
     } = this.state;
 
     const canSubmit = message !== undefined && !isTerminated;
@@ -86,6 +88,11 @@ class Chat extends React.Component {
             <FormattedMessage id="app.chat.chatTerminatedByPeer" />
           </p>
         )}
+        {error && (
+          <p>
+            <FormattedMessage id="app.chat.unknownCommand" />
+          </p>
+        )}
       </React.Fragment>
     );
   }
@@ -114,13 +121,26 @@ class Chat extends React.Component {
   }
 
   dispatchRemote(action) {
-    this.setState(prevState => execRemote(prevState, action));
+    try {
+      const updateState = execRemote(this.state, action);
+      this.setState(updateState);
+    } catch (error) {
+      // it should not happen, just print error for debugging
+      console.error(error);
+    }
   }
 
   dispatch(action) {
-    this.setState(prevState => exec(prevState, action));
-    // every local actions should be send over to other peer
-    this.props.send(action);
+    try {
+      const updateState = exec(this.state, action);
+      this.setState(updateState);
+      // every local actions should be send over to other peer
+      this.props.send(action);
+    } catch (error) {
+      this.setState({
+        error
+      });
+    }
   }
 
   unsetPeerIsTyping = () => {
