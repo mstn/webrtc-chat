@@ -19,7 +19,6 @@ const peerserver = ExpressPeerServer(server, options);
 
 peerserver.on('connection', function (peerId) {
   console.log(`connected peer ${peerId}`);
-  console.log(peerserver._clients)
 });
 
 peerserver.on('disconnect', function (peerId) {
