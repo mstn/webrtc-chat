@@ -52,6 +52,9 @@ const commands = {
       throw new Error('Malformed command');
     }
     const countdown = parseInt(args[0], 10);
+    if (isNaN(countdown)) {
+      throw new Error(`Malformed command: ${countdown} is not an Int`);
+    }
     // TODO verify is string is url
     const countdownUrl = args[1];
     return {
