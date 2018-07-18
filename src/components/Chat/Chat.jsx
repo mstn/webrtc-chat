@@ -70,10 +70,14 @@ class Chat extends React.Component {
           <FormattedMessage id="app.chat.send" />
         </button>
         {peerIsTyping && (
-          <p>Peer is typing</p>
+          <p>
+            <FormattedMessage id="app.chat.peerIsTyping" />
+          </p>
         )}
         {isTerminated && (
-          <p>Chat terminated by your peer</p>
+          <p>
+            <FormattedMessage id="app.chat.chatTerminatedByPeer" />
+          </p>
         )}
       </React.Fragment>
     );

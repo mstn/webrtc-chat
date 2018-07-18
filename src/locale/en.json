@@ -13,5 +13,7 @@
   "app.chatRequests.noRequests": "No requests",
   "app.chatRequests.join": "Join",
   "app.header.welcomeMessage": "You are connected as {displayName}",
-  "app.chat.send": "Send"
+  "app.chat.send": "Send",
+  "app.chat.peerIsTyping": "Peer is typing",
+  "app.chat.chatTerminatedByPeer": "Chat terminated by peer"
 }
