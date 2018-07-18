@@ -16,10 +16,10 @@
 }
 
 .left-top {
-  background-color: lightgreen;
+  background-color: lightgray;
 }
 .right-top {
-	background-color: lightgray;
+  background-color: lightgreen;
 }
 
 /* Right triangle placed top left flush. */
@@ -45,7 +45,7 @@
   top: 0px;
 	bottom: auto;
 	border: 22px solid;
-	border-color: lightgreen transparent transparent transparent;
+	border-color: lightgray transparent transparent transparent;
 }
 
 /* Right triangle placed top right flush. */
@@ -71,7 +71,7 @@
   top: 0px;
 	bottom: auto;
 	border: 20px solid;
-	border-color: lightgray transparent transparent transparent;
+	border-color: lightgreen transparent transparent transparent;
 }
 
 /* talk bubble contents */

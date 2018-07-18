@@ -9,7 +9,7 @@ import classnames from 'classnames';
 const Bubble = (props) => {
   return (
     <div className={props.highlight ? 'highlight' : ''} >
-      <div className={classnames(['talk-bubble', 'tri-right', props.remote ? 'right-top' : 'left-top'])}>
+      <div className={classnames(['talk-bubble', 'tri-right', props.remote ? 'left-top' : 'right-top'])}>
         <div className="talktext">
           <p className={props.think ? 'isThinking' : ''}>{props.text}</p>
         </div>
