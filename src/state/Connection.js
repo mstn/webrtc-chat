@@ -2,8 +2,8 @@ import { Container } from 'unstated';
 
 import Peer from 'peerjs';
 
-const SERVER_HOST = 'localhost';
-const SERVER_PORT = 9000;
+const SERVER_HOST = process.env.REACT_APP_SERVER || 'localhost';
+const SERVER_PORT = process.env.REACT_APP_PORT || 9000;
 const DEBUG_LEVEL = 3;
 
 /**
