@@ -1,5 +1,7 @@
 import findLastIndex from 'lodash/fp/findLastIndex';
 
+import { parse } from './parse';
+
 /**
  * describe how a REMOTE command changes the local state
  */
@@ -7,7 +9,7 @@ const commands = {
   DATA(state, action) {
     return {
       messages: state.messages.concat({
-        text: action.payload,
+        text: parse(action.payload),
         remote: true
       })
     };
@@ -25,7 +27,7 @@ const commands = {
   THINK(state, action) {
     return {
       messages: state.messages.concat({
-        text: action.payload,
+        text: parse(action.payload),
         think: true,
         remote: true,
       })
@@ -60,7 +62,7 @@ const commands = {
   HIGHLIGHT(state, action) {
     return {
       messages: state.messages.concat({
-        text: action.payload,
+        text: parse(action.payload),
         highlight: true,
         remote: true,
       })

@@ -1,5 +1,7 @@
 import findLastIndex from 'lodash/fp/findLastIndex';
 
+import { parse } from './parse';
+
 /**
  * describe how a LOCAL command changes the local state
  */
@@ -7,7 +9,7 @@ const commands = {
   DATA(state, action) {
     return {
       messages: state.messages.concat({
-        text: action.payload
+        text: parse(action.payload)
       }),
       message: ''
     };
@@ -26,7 +28,7 @@ const commands = {
   THINK(state, action) {
     return {
       messages: state.messages.concat({
-        text: action.payload,
+        text: parse(action.payload),
         think: true
       }),
       message: ''
@@ -54,7 +56,7 @@ const commands = {
   HIGHLIGHT(state, action) {
     return {
       messages: state.messages.concat({
-        text: action.payload,
+        text: parse(action.payload),
         highlight: true
       }),
       message: ''

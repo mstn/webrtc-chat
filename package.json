@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "emoji-dictionary": "^1.0.9",
     "history": "^4.7.2",
     "lodash": "^4.17.10",
     "peerjs": "^0.3.16",
