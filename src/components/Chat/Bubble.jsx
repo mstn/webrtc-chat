@@ -1,5 +1,7 @@
 import React from 'react';
 
+import T from 'prop-types';
+
 import './Bubble.css';
 
 import classnames from 'classnames';
@@ -13,5 +15,11 @@ const Bubble = (props) => {
     </div>
   );
 }
+
+Bubble.propTypes = {
+  think: T.bool,
+  remote: T.bool,
+  text: T.string.isRequired,
+};
 
 export default Bubble;
