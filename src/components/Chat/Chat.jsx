@@ -8,6 +8,8 @@ import { withProps } from 'recompose';
 
 import './Chat.css';
 
+import isEmpty from 'lodash/fp/isEmpty';
+
 import Bubble from './Bubble';
 import Countdown from '../Countdown/Countdown';
 
@@ -71,7 +73,7 @@ class Chat extends React.Component {
       remoteError,
     } = this.state;
 
-    const canSubmit = message !== undefined && !isTerminated;
+    const canSubmit = !isEmpty(message) && !isTerminated;
 
     return (
       <React.Fragment>
@@ -164,7 +166,9 @@ class Chat extends React.Component {
   }
 
   handleKeyPress = event => {
-    if (event.key === 'Enter') {
+    const { message, isTerminated } = this.state;
+    const canSubmit = !isEmpty(message) && !isTerminated;
+    if (event.key === 'Enter' && canSubmit) {
       this.onSubmit();
     }
   }
