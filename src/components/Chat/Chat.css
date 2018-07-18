@@ -32,3 +32,12 @@
   border: 1px solid;
   border-radius: 0;
 }
+
+.chat-terminated-by-peer {
+  border: 2px solid;
+  border-color: black;
+  width: 300px;
+  padding: 10px;
+  background: red;
+  color: lightyellow;
+}

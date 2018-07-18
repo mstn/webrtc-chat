@@ -89,11 +89,17 @@ class Chat extends React.Component {
               <FormattedMessage id="app.chat.peerIsTyping" />
             </p>
           )}
+          {isTerminated && (
+            <p class="chat-terminated-by-peer">
+              <FormattedMessage id="app.chat.chatTerminatedByPeer" />
+            </p>
+          )}
           <div ref={el => { this.bottom = el; }} />
         </div>
         <div className="chat-control">
           <input
             type="text"
+            disabled={isTerminated}
             onChange={event => this.onTyping(event.target.value)}
             onKeyPress={this.handleKeyPress}
             value={this.state.message}
@@ -102,11 +108,6 @@ class Chat extends React.Component {
           <button onClick={this.onSubmit} disabled={!canSubmit}>
             <FormattedMessage id="app.chat.send" />
           </button>
-          {isTerminated && (
-            <p>
-              <FormattedMessage id="app.chat.chatTerminatedByPeer" />
-            </p>
-          )}
           {error && (
             <p>
               <FormattedMessage id="app.chat.unknownCommand" />
